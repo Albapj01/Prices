@@ -8,7 +8,7 @@ First of all, to prove that the project is updated and ready, you need to execut
 mvn clean install
 ```
 
-Then, when it passes correctly, you can run the this project with the command:
+Then, when it passes correctly, you can run the project with the command:
 
 ```sh
 ./mvnw spring-boot:run

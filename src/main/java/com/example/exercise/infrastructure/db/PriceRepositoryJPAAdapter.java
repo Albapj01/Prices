@@ -6,9 +6,9 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.example.exercise.application.mappers.PriceMapper;
 import com.example.exercise.domain.aggregates.Price;
 import com.example.exercise.domain.repositories.PriceRepository;
+import com.example.exercise.infrastructure.mappers.PriceMapper;
 
 @Repository
 public class PriceRepositoryJPAAdapter implements PriceRepository{

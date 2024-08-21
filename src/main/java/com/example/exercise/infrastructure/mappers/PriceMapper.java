@@ -1,4 +1,4 @@
-package com.example.exercise.application.mappers;
+package com.example.exercise.infrastructure.mappers;
 
 import com.example.exercise.domain.aggregates.Price;
 import com.example.exercise.domain.vos.Amount;
