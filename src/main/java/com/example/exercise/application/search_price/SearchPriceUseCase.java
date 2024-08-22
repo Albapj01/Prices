@@ -17,9 +17,14 @@ public class SearchPriceUseCase {
 
         Price price = this.priceService.searchPrice(request.getDate(), request.getProductId(), request.getBrandId());
 
-        return SearchPriceResponse.builder().productId(price.getProductId()).brandId(price.getBrandId())
-                .dateStart(FormatUtil.toFormat(price.getStartDate())).dateEnd(FormatUtil.toFormat(price.getEndDate()))
-                .price(price.getFinalPrice()).rate(price.getPriceList().toString()).build();
+        return SearchPriceResponse.builder().productId(price.getProductId())
+                                            .brandId(price.getBrandId())
+                                            .dateStart(FormatUtil.toFormat(price.getStartDate()))
+                                            .dateEnd(FormatUtil.toFormat(price.getEndDate()))
+                                            .rate(price.getPriceList().toString())
+                                            .amount(FormatUtil.formatDouble(price.getAmount().getValue()))
+                                            .currency(price.getCurrency().getValue())
+                                            .build();
 
     }
     

@@ -1,5 +1,8 @@
 package com.example.exercise.domain.util;
 
+import java.util.Locale;
+import java.text.NumberFormat;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -19,7 +22,10 @@ public class FormatUtil {
     }
 
     public static String formatDouble(Double num) {
-        return String.format("%.2f", num);
+        NumberFormat formatter = NumberFormat.getNumberInstance(Locale.US);
+        formatter.setMinimumFractionDigits(2);
+        formatter.setMaximumFractionDigits(2);
+        return formatter.format(num);  
     }
 
 }

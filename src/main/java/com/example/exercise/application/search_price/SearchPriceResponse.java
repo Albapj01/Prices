@@ -12,6 +12,7 @@ public class SearchPriceResponse {
     private final String rate;
     private final String dateStart;
     private final String dateEnd; 
-    private final String price; 
+    private final String amount; 
+    private final String currency;
 
 }

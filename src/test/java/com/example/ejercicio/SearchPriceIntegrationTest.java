@@ -34,7 +34,8 @@ public class SearchPriceIntegrationTest {
         assertEquals("2020-06-14-00.00.00", response.getDateStart());
         assertEquals("2020-12-31-23.59.59", response.getDateEnd());
         assertEquals("1", response.getRate());
-        assertEquals("35,50 EUR", response.getPrice());
+        assertEquals("35.50", response.getAmount());
+        assertEquals("EUR", response.getCurrency());
 
     }
 
@@ -53,7 +54,8 @@ public class SearchPriceIntegrationTest {
         assertEquals("2020-06-14-15.00.00", response.getDateStart());
         assertEquals("2020-06-14-18.30.00", response.getDateEnd());
         assertEquals("2", response.getRate());
-        assertEquals("25,45 EUR", response.getPrice());
+        assertEquals("25.45", response.getAmount());
+        assertEquals("EUR", response.getCurrency());
 
     }
 
@@ -72,7 +74,9 @@ public class SearchPriceIntegrationTest {
         assertEquals("2020-06-14-00.00.00", response.getDateStart());
         assertEquals("2020-12-31-23.59.59", response.getDateEnd());
         assertEquals("1", response.getRate());
-        assertEquals("35,50 EUR", response.getPrice());
+        assertEquals("35.50", response.getAmount());
+        assertEquals("EUR", response.getCurrency());
+
 
     }
 
@@ -91,7 +95,8 @@ public class SearchPriceIntegrationTest {
         assertEquals("2020-06-15-00.00.00", response.getDateStart());
         assertEquals("2020-06-15-11.00.00", response.getDateEnd());
         assertEquals("3", response.getRate());
-        assertEquals("30,50 EUR", response.getPrice());
+        assertEquals("30.50", response.getAmount());
+        assertEquals("EUR", response.getCurrency());
 
     }
 
@@ -110,7 +115,8 @@ public class SearchPriceIntegrationTest {
         assertEquals("2020-06-15-16.00.00", response.getDateStart());
         assertEquals("2020-12-31-23.59.59", response.getDateEnd());
         assertEquals("4", response.getRate());
-        assertEquals("38,95 EUR", response.getPrice());
+        assertEquals("38.95", response.getAmount());
+        assertEquals("EUR", response.getCurrency());
 
     }
 
@@ -138,7 +144,7 @@ public class SearchPriceIntegrationTest {
     @Test
     public void when_date_has_invalid_format_and_productId_is_11111_brandId_is_1_then_response_is_400() {
 
-        ResponseEntity<String> res = restTemplate.getForEntity("/price/search?date=hello&idProduct=35455&idBrand=1", 
+        ResponseEntity<String> res = restTemplate.getForEntity("/price/search?date=invalid&idProduct=11111&idBrand=1", 
             String.class);
 
         assertEquals(HttpStatus.BAD_REQUEST, res.getStatusCode());

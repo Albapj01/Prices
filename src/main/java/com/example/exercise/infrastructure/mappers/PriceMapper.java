@@ -11,15 +11,15 @@ public class PriceMapper {
     
     public static Price toModel(PriceJPA priceJPA) {
         return Price.builder()
-        .amount(new Amount(priceJPA.getPrice()))
-        .brandId(priceJPA.getBrandId())
-        .currency(Currency.valueOf(priceJPA.getCurrency()))
-        .endDate(priceJPA.getEndDate())
-        .priceList(Integer.valueOf(priceJPA.getPriceList()))
-        .priority(priceJPA.getPriority())
-        .productId(priceJPA.getProductId())
-        .startDate(priceJPA.getStartDate())
-        .build();
+                    .amount(new Amount(priceJPA.getPrice()))
+                    .brandId(priceJPA.getBrandId())
+                    .currency(Currency.valueOf(priceJPA.getCurrency()))
+                    .endDate(priceJPA.getEndDate())
+                    .priceList(Integer.valueOf(priceJPA.getPriceList()))
+                    .priority(priceJPA.getPriority())
+                    .productId(priceJPA.getProductId())
+                    .startDate(priceJPA.getStartDate())
+                    .build();
     }
 
 }

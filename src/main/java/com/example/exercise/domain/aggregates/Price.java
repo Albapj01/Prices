@@ -2,7 +2,6 @@ package com.example.exercise.domain.aggregates;
 
 import java.time.LocalDateTime;
 
-import com.example.exercise.domain.util.FormatUtil;
 import com.example.exercise.domain.vos.Amount;
 import com.example.exercise.domain.vos.Currency;
 
@@ -21,9 +20,5 @@ public class Price {
     private final Integer priority;
     private final Amount amount;
     private final Currency currency;
-
-    public String getFinalPrice() {
-        return FormatUtil.formatDouble(this.amount.getValue()) + " " + this.currency.getValue();
-    }
 
 }

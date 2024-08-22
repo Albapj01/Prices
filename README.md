@@ -34,15 +34,16 @@ mvn test
 
 If you want to prove the service, you can do it with Postman, which is a tool to test and develop APIs. Then, you need to create a new request in which you have to select the method `GET`, introduce an url and finally send it.
 
-For example, you can introduce localhost:8080/price/search?date=2020-06-14T10:00:00&idProduct=35455&idBrand=1 and then it is going to return the information of the price that you are looking for in a json:
+For example, you can introduce _localhost:8080/price/search?date=2020-06-14T10:00:00&idProduct=35455&idBrand=1_ and then it is going to return the information of the price that you are looking for in a json:
 
 ```json
 {
-  "productId": "35455",
-  "brandId": "1",
-  "rate": "1",
-  "dateStart": "2020-06-14-00.00.00",
-  "dateEnd": "2020-12-31-23.59.59",
-  "price": "35,50 EUR"
+    "productId": "35455",
+    "brandId": "1",
+    "rate": "1",
+    "dateStart": "2020-06-14-00.00.00",
+    "dateEnd": "2020-12-31-23.59.59",
+    "amount": "35.50",
+    "currency": "EUR"
 }
 ```
