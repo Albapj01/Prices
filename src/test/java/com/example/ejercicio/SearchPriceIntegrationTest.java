@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import com.example.exercise.ExerciseApplication;
@@ -110,6 +111,38 @@ public class SearchPriceIntegrationTest {
         assertEquals("2020-12-31-23.59.59", response.getDateEnd());
         assertEquals("4", response.getRate());
         assertEquals("38,95 EUR", response.getPrice());
+
+    }
+
+    @Test
+    public void when_date_is_20200614T1000_productId_is_11111_brandId_is_1_then_response_is_404() {
+        
+        ResponseEntity<String> res = restTemplate.getForEntity("/price/search?date=2021-06-14-10.00.00&idProduct=11111&idBrand=1", 
+        String.class);
+
+        assertEquals(HttpStatus.NOT_FOUND, res.getStatusCode());
+        assertTrue(res.getBody().contains("Price not found"));
+    }
+
+    @Test
+    public void when_date_is_not_informed_then_response_is_400() {
+
+        ResponseEntity<String> res = restTemplate.getForEntity("/price/search?idProduct=35455&idBrand=1", 
+            String.class);
+        
+        assertEquals(HttpStatus.BAD_REQUEST, res.getStatusCode());
+        assertTrue(res.getBody().contains("Missing required parameter: date"));
+
+    }
+
+    @Test
+    public void when_date_has_invalid_format_and_productId_is_11111_brandId_is_1_then_response_is_400() {
+
+        ResponseEntity<String> res = restTemplate.getForEntity("/price/search?date=hello&idProduct=35455&idBrand=1", 
+            String.class);
+
+        assertEquals(HttpStatus.BAD_REQUEST, res.getStatusCode());
+        assertTrue(res.getBody().contains("Invalid date format"));
 
     }
 
