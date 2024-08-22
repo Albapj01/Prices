@@ -2,7 +2,6 @@ package com.example.exercise.domain.services;
 
 import java.time.LocalDateTime;
 import java.util.Comparator;
-import java.util.Optional;
 
 import com.example.exercise.domain.aggregates.Price;
 import com.example.exercise.domain.exceptions.PriceNotFoundException;
@@ -17,18 +16,9 @@ public class PriceService {
     }
 
     public Price searchPrice(LocalDateTime date, String productId, String brandId) throws PriceNotFoundException{
-
-        Optional<Price> price = this.priceRepository.findAll().stream()
-                .filter(p -> p.getStartDate().isBefore(date) && p.getEndDate().isAfter(date))
-                .filter(p -> p.getProductId().equals(productId)).filter(p -> p.getBrandId().equals(brandId))
-                .max(Comparator.comparingInt(Price::getPriority));
-
-        if(price.isPresent()) {
-            return price.get();
-        } else {
-            throw new PriceNotFoundException("Precio no encontrado");
-        }
-
+        return this.priceRepository.findByDateAndProductIdAndBrandId(date, productId, brandId).stream()
+                .max(Comparator.comparingInt(Price::getPriority))
+                .orElseThrow(() -> new PriceNotFoundException("Price with date " + date + ", productId " + productId + " and brandId "+ brandId + " not found."));
     }
 
 }

@@ -1,5 +1,6 @@
 package com.example.exercise.infrastructure.db;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,9 +18,9 @@ public class PriceRepositoryJPAAdapter implements PriceRepository{
     private PriceRepositoryJPA priceRepositoryJPA;
 
     @Override
-    public List<Price> findAll() {
-        return this.priceRepositoryJPA.findAll()
-        .stream().map(PriceMapper::toModel).collect(Collectors.toList());
+    public List<Price> findByDateAndProductIdAndBrandId(LocalDateTime date, String productId, String brandId){
+        return this.priceRepositoryJPA.findPricesByDateAndProductIdAndBrandId(date, productId, brandId)
+                .stream().map(PriceMapper::toModel).collect(Collectors.toList());
     }
 
 }

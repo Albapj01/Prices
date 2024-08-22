@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -26,9 +27,13 @@ public class SearchPriceBusinessTest {
     private final SearchPriceUseCase searchPriceUseCase = new SearchPriceUseCase(priceService);
     
     @Test
-    public void shouldSearchPriceFirstCase() throws PriceNotFoundException{
+    public void when_date_is_20200614T1000_productId_is_35455_brandId_is_1_then_price_is_35_50_EUR() throws PriceNotFoundException{
 
-        Mockito.when(priceRepository.findAll()).thenReturn(this.getPrices());
+        Mockito.when(priceRepository.findByDateAndProductIdAndBrandId(FormatUtil.dateParse("2020-06-14-10.00.00"), "35455", "1"))
+                .thenReturn(this.getPrices().stream()
+                .filter(price -> price.getStartDate().isBefore(FormatUtil.dateParse("2020-06-14-10.00.00"))
+                && price.getEndDate().isAfter(FormatUtil.dateParse("2020-06-14-10.00.00")))
+                .collect(Collectors.toList()));
 
         SearchPriceRequest request = SearchPriceRequest.builder().date(FormatUtil.dateParse("2020-06-14-10.00.00"))
                 .productId("35455").brandId("1").build();
@@ -46,9 +51,12 @@ public class SearchPriceBusinessTest {
 
 
     @Test
-    public void shouldSearchPriceSecondCase() throws PriceNotFoundException{
+    public void when_date_is_20200614T1600_productId_is_35455_brandId_is_1_then_price_is_25_45_EUR() throws PriceNotFoundException{
 
-        Mockito.when(priceRepository.findAll()).thenReturn(this.getPrices());
+        Mockito.when(priceRepository.findByDateAndProductIdAndBrandId(FormatUtil.dateParse("2020-06-14-16.00.00"),"35455","1"))
+                .thenReturn(this.getPrices().stream().filter(price -> price.getStartDate().isBefore(FormatUtil.dateParse("2020-06-14-16.00.00"))
+                && price.getEndDate().isAfter(FormatUtil.dateParse("2020-06-14-16.00.00")))
+                .collect(Collectors.toList()));
 
         SearchPriceRequest request = SearchPriceRequest.builder().date(FormatUtil.dateParse("2020-06-14-16.00.00"))
                 .productId("35455").brandId("1").build();
@@ -66,9 +74,12 @@ public class SearchPriceBusinessTest {
 
 
     @Test
-    public void shouldSearchPriceThirdCase() throws PriceNotFoundException{
+    public void when_date_is_20200614T2100_productId_is_35455_brandId_is_1_then_price_is_35_50_EUR() throws PriceNotFoundException{
 
-        Mockito.when(priceRepository.findAll()).thenReturn(this.getPrices());
+        Mockito.when(priceRepository.findByDateAndProductIdAndBrandId(FormatUtil.dateParse("2020-06-14-21.00.00"),"35455","1"))
+                .thenReturn(this.getPrices().stream().filter(price -> price.getStartDate().isBefore(FormatUtil.dateParse("2020-06-14-21.00.00"))
+                && price.getEndDate().isAfter(FormatUtil.dateParse("2020-06-14-21.00.00")))
+                .collect(Collectors.toList()));
 
         SearchPriceRequest request = SearchPriceRequest.builder().date(FormatUtil.dateParse("2020-06-14-21.00.00"))
                 .productId("35455").brandId("1").build();
@@ -86,9 +97,12 @@ public class SearchPriceBusinessTest {
 
 
     @Test
-    public void shouldSearchPriceFourthCase() throws PriceNotFoundException{
+    public void when_date_is_20200615T1000_productId_is_35455_brandId_is_1_then_price_is_30_50_EUR() throws PriceNotFoundException{
 
-        Mockito.when(priceRepository.findAll()).thenReturn(this.getPrices());
+        Mockito.when(priceRepository.findByDateAndProductIdAndBrandId(FormatUtil.dateParse("2020-06-15-10.00.00"),"35455","1"))
+                .thenReturn(this.getPrices().stream().filter(price -> price.getStartDate().isBefore(FormatUtil.dateParse("2020-06-15-10.00.00"))
+                && price.getEndDate().isAfter(FormatUtil.dateParse("2020-06-15-10.00.00")))
+                .collect(Collectors.toList()));
 
         SearchPriceRequest request = SearchPriceRequest.builder().date(FormatUtil.dateParse("2020-06-15-10.00.00"))
                 .productId("35455").brandId("1").build();
@@ -106,9 +120,12 @@ public class SearchPriceBusinessTest {
 
 
     @Test
-    public void shouldSearchPriceFifthCase() throws PriceNotFoundException{
+    public void when_date_is_20200616T2100_productId_is_35455_brandId_is_1_then_price_is_38_95_EUR() throws PriceNotFoundException{
 
-        Mockito.when(priceRepository.findAll()).thenReturn(this.getPrices());
+        Mockito.when(priceRepository.findByDateAndProductIdAndBrandId(FormatUtil.dateParse("2020-06-16-21.00.00"),"35455","1"))
+                .thenReturn(this.getPrices().stream().filter(price -> price.getStartDate().isBefore(FormatUtil.dateParse("2020-06-16-21.00.00"))
+                && price.getEndDate().isAfter(FormatUtil.dateParse("2020-06-16-21.00.00")))
+                .collect(Collectors.toList()));
 
         SearchPriceRequest request = SearchPriceRequest.builder().date(FormatUtil.dateParse("2020-06-16-21.00.00"))
                 .productId("35455").brandId("1").build();
