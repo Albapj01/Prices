@@ -18,7 +18,7 @@ public class PriceRepositoryJPAAdapter implements PriceRepository{
     private PriceRepositoryJPA priceRepositoryJPA;
 
     @Override
-    public List<Price> findByDateAndProductIdAndBrandId(LocalDateTime date, String productId, String brandId){
+    public List<Price> findByDateAndProductIdAndBrandId(LocalDateTime date, Integer productId, Integer brandId){
         return this.priceRepositoryJPA.findPricesByDateAndProductIdAndBrandId(date, productId, brandId)
                 .stream().map(PriceMapper::toModel).collect(Collectors.toList());
     }

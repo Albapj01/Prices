@@ -5,8 +5,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
-import com.example.exercise.domain.exceptions.InvalidDateException;
 import com.example.exercise.domain.exceptions.PriceNotFoundException;
 
 @RestControllerAdvice
@@ -20,13 +20,13 @@ public class RestControllerExceptionHandler {
     @ExceptionHandler(MissingServletRequestParameterException.class)
     public ResponseEntity<String> handleMissingParams(MissingServletRequestParameterException ex) {
         String parameterName = ex.getParameterName();
-        String message = "Missing required parameter: " + parameterName;
-        return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>("Missing required parameter: " + parameterName, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(InvalidDateException.class)
-    protected ResponseEntity<String> handleInvalidDateException(InvalidDateException ex) {
-        return new ResponseEntity<>("Invalid date format", HttpStatus.BAD_REQUEST);
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    protected ResponseEntity<String> handleInvalidDateException(MethodArgumentTypeMismatchException ex) {
+        String parameterName = ex.getName();
+        return new ResponseEntity<>("Invalid " + parameterName + " format", HttpStatus.BAD_REQUEST);
     }
     
 }

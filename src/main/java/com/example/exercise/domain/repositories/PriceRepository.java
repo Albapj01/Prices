@@ -7,6 +7,6 @@ import com.example.exercise.domain.aggregates.Price;
 
 public interface PriceRepository {
     
-    public List<Price> findByDateAndProductIdAndBrandId(LocalDateTime date, String productId, String brandId);
+    public List<Price> findByDateAndProductIdAndBrandId(LocalDateTime date, Integer productId, Integer brandId);
 
 }

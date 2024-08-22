@@ -10,7 +10,7 @@ import lombok.Data;
 public class SearchPriceRequest {
     
     private final LocalDateTime date;
-    private final String productId;
-    private final String brandId;
+    private final Integer productId;
+    private final Integer brandId;
 
 }

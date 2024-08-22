@@ -15,7 +15,7 @@ public class PriceService {
         this.priceRepository = priceRepository;
     }
 
-    public Price searchPrice(LocalDateTime date, String productId, String brandId) throws PriceNotFoundException{
+    public Price searchPrice(LocalDateTime date, Integer productId, Integer brandId) throws PriceNotFoundException{
         return this.priceRepository.findByDateAndProductIdAndBrandId(date, productId, brandId).stream()
                 .max(Comparator.comparingInt(Price::getPriority))
                 .orElseThrow(() -> new PriceNotFoundException("Price with date " + date + ", productId " + productId + " and brandId "+ brandId + " not found."));

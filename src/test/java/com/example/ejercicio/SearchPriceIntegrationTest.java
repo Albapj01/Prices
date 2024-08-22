@@ -22,7 +22,7 @@ public class SearchPriceIntegrationTest {
     @Test
     public void when_date_is_20200614T1000_productId_is_35455_brandId_is_1_then_price_is_35_50_EUR() {
         
-        ResponseEntity<SearchPriceResponse> res = restTemplate.getForEntity("/price/search?date=2020-06-14-10.00.00&idProduct=35455&idBrand=1", 
+        ResponseEntity<SearchPriceResponse> res = restTemplate.getForEntity("/price/search?date=2020-06-14T10:00:00&idProduct=35455&idBrand=1", 
         SearchPriceResponse.class);
 
         assertTrue(res.getStatusCode().is2xxSuccessful());
@@ -41,7 +41,7 @@ public class SearchPriceIntegrationTest {
     @Test
     public void when_date_is_20200614T1600_productId_is_35455_brandId_is_1_then_price_is_25_45_EUR() {
         
-        ResponseEntity<SearchPriceResponse> res = restTemplate.getForEntity("/price/search?date=2020-06-14-16.00.00&idProduct=35455&idBrand=1", 
+        ResponseEntity<SearchPriceResponse> res = restTemplate.getForEntity("/price/search?date=2020-06-14T16:00:00&idProduct=35455&idBrand=1", 
         SearchPriceResponse.class);
 
         assertTrue(res.getStatusCode().is2xxSuccessful());
@@ -60,7 +60,7 @@ public class SearchPriceIntegrationTest {
     @Test
     public void when_date_is_20200614T2100_productId_is_35455_brandId_is_1_then_price_is_35_50_EUR() {
         
-        ResponseEntity<SearchPriceResponse> res = restTemplate.getForEntity("/price/search?date=2020-06-14-21.00.00&idProduct=35455&idBrand=1", 
+        ResponseEntity<SearchPriceResponse> res = restTemplate.getForEntity("/price/search?date=2020-06-14T21:00:00&idProduct=35455&idBrand=1", 
         SearchPriceResponse.class);
 
         assertTrue(res.getStatusCode().is2xxSuccessful());
@@ -79,7 +79,7 @@ public class SearchPriceIntegrationTest {
     @Test
     public void when_date_is_20200615T1000_productId_is_35455_brandId_is_1_then_price_is_30_50_EUR() {
         
-        ResponseEntity<SearchPriceResponse> res = restTemplate.getForEntity("/price/search?date=2020-06-15-10.00.00&idProduct=35455&idBrand=1", 
+        ResponseEntity<SearchPriceResponse> res = restTemplate.getForEntity("/price/search?date=2020-06-15T10:00:00&idProduct=35455&idBrand=1", 
         SearchPriceResponse.class);
 
         assertTrue(res.getStatusCode().is2xxSuccessful());
@@ -98,7 +98,7 @@ public class SearchPriceIntegrationTest {
     @Test
     public void when_date_is_20200616T2100_productId_is_35455_brandId_is_1_then_price_is_38_95_EUR() {
         
-        ResponseEntity<SearchPriceResponse> res = restTemplate.getForEntity("/price/search?date=2020-06-16-21.00.00&idProduct=35455&idBrand=1", 
+        ResponseEntity<SearchPriceResponse> res = restTemplate.getForEntity("/price/search?date=2020-06-16T21:00:00&idProduct=35455&idBrand=1", 
         SearchPriceResponse.class);
 
         assertTrue(res.getStatusCode().is2xxSuccessful());
@@ -117,7 +117,7 @@ public class SearchPriceIntegrationTest {
     @Test
     public void when_date_is_20200614T1000_productId_is_11111_brandId_is_1_then_response_is_404() {
         
-        ResponseEntity<String> res = restTemplate.getForEntity("/price/search?date=2021-06-14-10.00.00&idProduct=11111&idBrand=1", 
+        ResponseEntity<String> res = restTemplate.getForEntity("/price/search?date=2021-06-14T10:00:00&idProduct=11111&idBrand=1", 
         String.class);
 
         assertEquals(HttpStatus.NOT_FOUND, res.getStatusCode());

@@ -13,6 +13,6 @@ import org.springframework.stereotype.Repository;
 public interface PriceRepositoryJPA extends JpaRepository<PriceJPA, Long> {
 
     @Query("SELECT p FROM PriceJPA p WHERE (p.startDate <= :date AND p.endDate >= :date) AND p.productId = :productId AND p.brandId = :brandId")
-    List<PriceJPA> findPricesByDateAndProductIdAndBrandId( @Param("date") LocalDateTime date, @Param("productId") String productId, @Param("brandId") String brandId);
+    List<PriceJPA> findPricesByDateAndProductIdAndBrandId( @Param("date") LocalDateTime date, @Param("productId") Integer productId, @Param("brandId") Integer brandId);
     
 } 
